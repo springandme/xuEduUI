@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js常用指令的测试</title>
+</head>
+<body>
+
+<!--实现body区域显示一个传智播客名称-->
+<div id="app">
+    <!--  相当于MVVM中的view视图  -->
+<!--    {{name}}-->
+
+    <br>
+    <br>
+    <a :href="url">
+    <span v-text="name"></span>
+    </a>
+    <input type="text" v-model="num1"/> +
+    <input type="text" v-model="num2"/> =
+<!--    <span v-text="Number.parseInt(num1)+Number.parseInt(num2)"></span>-->
+    <span v-text="result"></span>
+<!--    {{Number.parseInt(num1)+Number.parseInt(num2)}}-->
+    <button v-on:click="change">计算</button>
+<!--
+    bug:v-bind完整写法,无法正确显示,省略写法能正常显示
+  -->
+    <div :style="{ fontSize: size + 'px' }">ECS学习</div>
+</div>
+</body>
+<!--
+
+    1) v-model  -> [input,select, textarea ,components]中使用
+    实现双向数据绑定:
+        a.
+
+    2) v-text ->
+    解决插值表达式闪烁问题
+
+    3) v-on
+    监听事件
+
+    3) v-bind
+
+
+-->
+<script src="vue.min.js"></script>
+    <script>
+        //编写MVVM中的model部分及VM(ViewModel)部分
+        var VM=new Vue({
+           el:"#app",   //vue接管app区域的管理
+           data:{       //model数据
+               name:'求实好学的博客',
+               num1:0,
+               num2:0,
+               result:0,
+               url:'https://www.hliushi.cn',
+               size:22
+           },
+            methods:{
+                change:function () {
+                    this.result=Number.parseInt(this.num1)+Number.parseInt(this.num2);
+                    // alert("计算结果: "+this.result);
+                }
+            }
+        });
+
+    </script>
+</html>
